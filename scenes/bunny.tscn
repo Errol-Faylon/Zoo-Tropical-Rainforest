@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmcj4klabvutu"]
+
+[ext_resource type="Texture2D" uid="uid://dvd1r8rtmban4" path="res://assets/MiniBunny.png" id="1_0sl5a"]
+[ext_resource type="Script" uid="uid://38gvpytjgok2" path="res://scripts/bunny.gd" id="1_qn21b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdyof"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggkmg"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l787c"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qchqy"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfjs7"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ypmr"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqkoa"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g1bf"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gu26w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdyof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggkmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l787c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qchqy")
+}],
+"loop": true,
+"name": &"bunny_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfjs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ypmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqkoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g1bf")
+}],
+"loop": true,
+"name": &"bunny_walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84m58"]
+radius = 7.07107
+
+[node name="bunny" type="CharacterBody2D"]
+script = ExtResource("1_qn21b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_gu26w")
+animation = &"bunny_idle"
+frame_progress = 0.131654
+
+[node name="changestatetimer" type="Timer" parent="."]
+autostart = true
+
+[node name="walkingtimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_84m58")
+
+[connection signal="timeout" from="changestatetimer" to="." method="_on_changestatetimer_timeout"]
+[connection signal="timeout" from="walkingtimer" to="." method="_on_walkingtimer_timeout"]
