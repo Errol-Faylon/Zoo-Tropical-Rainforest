@@ -573,18 +573,19 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 5.0
-height = 20.0
+height = 12.0
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_ivps1")
-animation = &"sprint_up"
-frame = 5
-frame_progress = 0.00327155
+animation = &"sprint_down"
+frame_progress = 0.438198
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
+y_sort_enabled = true
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_g2els")
