@@ -191,11 +191,11 @@ position = Vector2(0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
 [node name="bunny" parent="." instance=ExtResource("5_iywne")]
-position = Vector2(-109, 34)
+position = Vector2(-113, 26)

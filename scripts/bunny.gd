@@ -2,12 +2,13 @@ extends CharacterBody2D
 
 var bunny_walking = false
 var bunny_idle = false
+var hunger = 100
 
 var xdir = 1
 var ydir = 1
 var speed = 30
 
-var moving_vertical_horizontal = 1
+var moving_vertical_horizontal = 1 
 
 func _ready():
 	bunny_walking = true
@@ -16,9 +17,11 @@ func _ready():
 	$walkingtimer.start()
 
 func _physics_process(delta):
+	update_hunger()
+	
 	# Reset velocity every frame
 	velocity = Vector2.ZERO
-
+	
 	if bunny_walking:
 		$AnimatedSprite2D.play("bunny_walking")
 
@@ -64,3 +67,18 @@ func _on_walkingtimer_timeout():
 
 	$walkingtimer.wait_time = waittime
 	$walkingtimer.start()
+
+func update_hunger():
+	var hungerbar = $hungerbar
+	hungerbar.value = hunger
+	
+	if hunger >= 100:
+		hungerbar.visible = false
+	else:
+		hungerbar.visible = true
+
+func _on_hunger_time_timeout():
+	if hunger == 100:
+		hunger -= 5
+	if hunger > 100:
+		hunger = 100
