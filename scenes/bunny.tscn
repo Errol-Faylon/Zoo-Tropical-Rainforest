@@ -73,13 +73,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_84m58"]
-radius = 7.07107
+radius = 5.0
 
 [node name="bunny" type="CharacterBody2D"]
 script = ExtResource("1_qn21b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -14)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_gu26w")
 animation = &"bunny_idle"
 frame_progress = 0.131654
@@ -91,20 +91,35 @@ autostart = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_84m58")
 
 [node name="hungerbar" type="ProgressBar" parent="."]
-modulate = Color(0.998738, 0, 0.287255, 1)
-offset_left = -4.0
-offset_top = 1.0
-offset_right = 76.0
-offset_bottom = 21.0
+modulate = Color(0.575929, 0.249122, 9.62615e-08, 1)
+offset_left = -5.0
+offset_right = 95.0
+offset_bottom = 30.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
 [node name="hunger_time" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="thirstbar" type="ProgressBar" parent="."]
+modulate = Color(0.0477627, 0.209993, 1, 1)
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 95.0
+offset_bottom = 30.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
+
+[node name="thirst_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [connection signal="timeout" from="changestatetimer" to="." method="_on_changestatetimer_timeout"]
 [connection signal="timeout" from="walkingtimer" to="." method="_on_walkingtimer_timeout"]
 [connection signal="timeout" from="hunger_time" to="." method="_on_hunger_time_timeout"]
+[connection signal="timeout" from="thirst_timer" to="." method="_on_thirst_timer_timeout"]
