@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var bunny_walking = false
 var bunny_idle = false
+var bunny_dead = false
 
 var xdir = 1
 var ydir = 1
@@ -11,6 +12,7 @@ var motion = Vector2()
 
 var moving_vertical_horizontal = 1 
 
+var health = 100
 var hunger = 100
 var thirst = 100
 
@@ -21,10 +23,15 @@ func _ready():
 	$walkingtimer.start()
 
 func _physics_process(delta):
+	update_health()
 	update_hunger()
 	update_thirst()
-	
+
 	motion = Vector2.ZERO
+	
+	if bunny_dead:
+		velocity = Vector2.ZERO
+		return
 	
 	if bunny_walking == true:
 		$AnimatedSprite2D.play("bunny_walking")
@@ -46,6 +53,9 @@ func _physics_process(delta):
 				
 	
 func _on_changestatetimer_timeout():
+	if bunny_dead:
+		return
+	
 	var waittime = 1
 
 	if bunny_walking == true:
@@ -61,6 +71,9 @@ func _on_changestatetimer_timeout():
 	$changestatetimer.start()
 
 func _on_walkingtimer_timeout():
+	if bunny_dead:
+		return
+	
 	var x = randf_range(1,2)
 	var y = randf_range(1,2)
 	var waittime = randf_range(1,4)
@@ -72,6 +85,22 @@ func _on_walkingtimer_timeout():
 	$walkingtimer.wait_time = randf_range(1,4)
 	$walkingtimer.start()
 
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+		
+	if health <= 0 and not bunny_dead:
+		kill_bunny()
+
+func _on_health_timer_timeout():
+	if bunny_dead:
+		return
+	
+	if hunger <= 0 or thirst <= 0:
+		health -= 10
+	if health < 0:
+		health = 0
+
 func update_hunger():
 	var hungerbar = $hungerbar
 	hungerbar.value = hunger
@@ -82,6 +111,9 @@ func update_hunger():
 		hungerbar.visible = true
 
 func _on_hunger_time_timeout():
+	if bunny_dead:
+		return
+	
 	if hunger <= 100:
 		hunger = hunger - 10
 	if hunger > 100:
@@ -97,7 +129,27 @@ func update_thirst():
 		thirstbar.visible = true
 
 func _on_thirst_timer_timeout():
+	if bunny_dead:
+		return
+	
 	if thirst <= 100:
 		thirst = thirst - 5
 	if thirst > 100:
 		thirst = 100
+
+func kill_bunny():
+	bunny_dead = true
+	health = 0
+	velocity = Vector2.ZERO
+	
+	$AnimatedSprite2D.play("bunny_dead")
+	
+	$changestatetimer.stop()
+	$walkingtimer.stop()
+	$hunger_time.stop()
+	$thirst_timer.stop()
+	$health_timer.stop()
+	
+func _on_AnimatedSprite2D_animation_finished(anim_name):
+	if anim_name == "bunny_dead":
+		$AnimatedSprite2D.stop()

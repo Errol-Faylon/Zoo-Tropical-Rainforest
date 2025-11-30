@@ -1,7 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmcj4klabvutu"]
+[gd_scene load_steps=16 format=3 uid="uid://bmcj4klabvutu"]
 
 [ext_resource type="Texture2D" uid="uid://dvd1r8rtmban4" path="res://assets/MiniBunny.png" id="1_0sl5a"]
 [ext_resource type="Script" uid="uid://38gvpytjgok2" path="res://scripts/bunny.gd" id="1_qn21b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn21b"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovlj1"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84m58"]
+atlas = ExtResource("1_0sl5a")
+region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdyof"]
 atlas = ExtResource("1_0sl5a")
@@ -37,6 +49,20 @@ region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gu26w"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn21b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovlj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84m58")
+}],
+"loop": false,
+"name": &"bunny_dead",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdyof")
@@ -81,8 +107,7 @@ script = ExtResource("1_qn21b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_gu26w")
-animation = &"bunny_idle"
-frame_progress = 0.131654
+animation = &"bunny_dead"
 
 [node name="changestatetimer" type="Timer" parent="."]
 autostart = true
@@ -94,11 +119,25 @@ autostart = true
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_84m58")
 
-[node name="hungerbar" type="ProgressBar" parent="."]
-modulate = Color(0.575929, 0.249122, 9.62615e-08, 1)
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0.14902, 1)
 offset_left = -5.0
+offset_top = -1.0
 offset_right = 95.0
-offset_bottom = 30.0
+offset_bottom = 19.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
+
+[node name="health_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="hungerbar" type="ProgressBar" parent="."]
+modulate = Color(0.695837, 0.30692, 1.92523e-07, 1)
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 21.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
@@ -107,11 +146,11 @@ wait_time = 3.0
 autostart = true
 
 [node name="thirstbar" type="ProgressBar" parent="."]
-modulate = Color(0.0477627, 0.209993, 1, 1)
+modulate = Color(0.145098, 0.505882, 1, 1)
 offset_left = -5.0
 offset_top = 3.0
 offset_right = 95.0
-offset_bottom = 30.0
+offset_bottom = 23.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
@@ -121,5 +160,6 @@ autostart = true
 
 [connection signal="timeout" from="changestatetimer" to="." method="_on_changestatetimer_timeout"]
 [connection signal="timeout" from="walkingtimer" to="." method="_on_walkingtimer_timeout"]
+[connection signal="timeout" from="health_timer" to="." method="_on_health_timer_timeout"]
 [connection signal="timeout" from="hunger_time" to="." method="_on_hunger_time_timeout"]
 [connection signal="timeout" from="thirst_timer" to="." method="_on_thirst_timer_timeout"]
