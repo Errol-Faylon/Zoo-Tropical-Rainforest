@@ -22,7 +22,7 @@ func _ready():
 	$changestatetimer.start()
 	$walkingtimer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	update_health()
 	update_hunger()
 	update_thirst()
@@ -74,9 +74,9 @@ func _on_walkingtimer_timeout():
 	if bunny_dead:
 		return
 	
-	var x = randf_range(1,2)
-	var y = randf_range(1,2)
-	var waittime = randf_range(1,4)
+	var _x = randf_range(1,2)
+	var _y = randf_range(1,2)
+	var _waittime = randf_range(1,4)
 
 	xdir = 1 if randf_range(1,2) > 1.5 else -1
 	ydir = 1 if randf_range(1,2) > 1.5 else -1
