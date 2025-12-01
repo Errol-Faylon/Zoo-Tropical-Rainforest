@@ -21,11 +21,17 @@ func _ready():
 	randomize()
 	$changestatetimer.start()
 	$walkingtimer.start()
+	$heal_timer.start()
 
 func _physics_process(_delta):
 	update_health()
 	update_hunger()
 	update_thirst()
+
+	if not bunny_dead and hunger > 50 and thirst > 50 and health < 100:
+		health += 1
+		if health > 100:
+			health = 100
 
 	motion = Vector2.ZERO
 	
@@ -97,7 +103,7 @@ func _on_health_timer_timeout():
 		return
 	
 	if hunger <= 0 or thirst <= 0:
-		health -= 10
+		health -= 20
 	if health < 0:
 		health = 0
 
@@ -115,7 +121,7 @@ func _on_hunger_time_timeout():
 		return
 	
 	if hunger <= 100:
-		hunger = hunger - 10
+		hunger = hunger - 15
 	if hunger > 100:
 		hunger = 100
 
@@ -133,7 +139,7 @@ func _on_thirst_timer_timeout():
 		return
 	
 	if thirst <= 100:
-		thirst = thirst - 5
+		thirst = thirst - 10
 	if thirst > 100:
 		thirst = 100
 
@@ -149,7 +155,39 @@ func kill_bunny():
 	$hunger_time.stop()
 	$thirst_timer.stop()
 	$health_timer.stop()
+	$heal_timer.stop()
 	
 func _on_AnimatedSprite2D_animation_finished(anim_name):
 	if anim_name == "bunny_dead":
 		$AnimatedSprite2D.stop()
+
+func feed(amount: int):
+	if bunny_dead:
+		return
+	
+	hunger += amount
+	if hunger > 100:
+		hunger = 100
+	print("Bunny fed! Hunger:", hunger)
+
+func drink(amount: int):
+	if bunny_dead:
+		return
+	
+	thirst += amount
+	if thirst > 100:
+		thirst = 100
+	print("Bunny drank! Thirst:", thirst)
+
+func _on_heal_timer_timeout():
+	if bunny_dead:
+		return
+	
+	if hunger > 10 and thirst > 10 and health < 100:
+		health += 10
+		if health > 100:
+			health = 100
+		print("Bunny healed! Health:", health)
+
+func bunny():
+	pass

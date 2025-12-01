@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bj6lfjfa77u62"]
+[gd_scene load_steps=79 format=3 uid="uid://bj6lfjfa77u62"]
 
 [ext_resource type="Texture2D" uid="uid://b5s0k57ukp2n1" path="res://assets/Player.png" id="1_g2els"]
 [ext_resource type="Script" uid="uid://tjfdeffnjkt5" path="res://scripts/player.gd" id="1_qhqgy"]
@@ -575,6 +575,9 @@ animations = [{
 radius = 5.0
 height = 12.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 12.0
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_qhqgy")
@@ -589,3 +592,12 @@ frame_progress = 0.438198
 y_sort_enabled = true
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_qhqgy")
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

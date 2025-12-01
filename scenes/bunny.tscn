@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmcj4klabvutu"]
+[gd_scene load_steps=17 format=3 uid="uid://bmcj4klabvutu"]
 
 [ext_resource type="Texture2D" uid="uid://dvd1r8rtmban4" path="res://assets/MiniBunny.png" id="1_0sl5a"]
 [ext_resource type="Script" uid="uid://38gvpytjgok2" path="res://scripts/bunny.gd" id="1_qn21b"]
@@ -101,6 +101,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_84m58"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qn21b"]
+radius = 9.0
+
 [node name="bunny" type="CharacterBody2D"]
 script = ExtResource("1_qn21b")
 
@@ -118,6 +121,10 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_84m58")
+
+[node name="heal_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0.14902, 1)
@@ -158,8 +165,15 @@ show_percentage = false
 wait_time = 3.0
 autostart = true
 
+[node name="bunny_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bunny_hitbox"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_qn21b")
+
 [connection signal="timeout" from="changestatetimer" to="." method="_on_changestatetimer_timeout"]
 [connection signal="timeout" from="walkingtimer" to="." method="_on_walkingtimer_timeout"]
+[connection signal="timeout" from="heal_timer" to="." method="_on_heal_timer_timeout"]
 [connection signal="timeout" from="health_timer" to="." method="_on_health_timer_timeout"]
 [connection signal="timeout" from="hunger_time" to="." method="_on_hunger_time_timeout"]
 [connection signal="timeout" from="thirst_timer" to="." method="_on_thirst_timer_timeout"]
