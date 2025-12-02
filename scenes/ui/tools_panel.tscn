@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://0gkxqbvtlh75"]
+
+[ext_resource type="Theme" uid="uid://llpf1d202owm" path="res://scenes/ui/game_ui_theme.tres" id="1_2yiqu"]
+[ext_resource type="Script" uid="uid://bws6cp63017h0" path="res://scenes/ui/tools_panel.gd" id="2_0jxvs"]
+[ext_resource type="Texture2D" uid="uid://ejm20tgo5rlk" path="res://assets/objects/basic_food.png" id="2_a7ivs"]
+[ext_resource type="Texture2D" uid="uid://w257go2ppxwu" path="res://assets/objects/basic_tools_and_materials.png" id="3_0jxvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7ivs"]
+atlas = ExtResource("2_a7ivs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jxvs"]
+atlas = ExtResource("3_0jxvs")
+region = Rect2(0, 0, 16, 16)
+
+[node name="ToolsPanel" type="PanelContainer"]
+offset_right = 90.0
+offset_bottom = 60.0
+scale = Vector2(3.49, 3.49)
+theme = ExtResource("1_2yiqu")
+theme_type_variation = &"DarkWoodPanel"
+script = ExtResource("2_0jxvs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ToolFood" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme_type_variation = &"ToolButton"
+toggle_mode = true
+icon = SubResource("AtlasTexture_a7ivs")
+icon_alignment = 1
+
+[node name="ToolWater" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme_type_variation = &"ToolButton"
+toggle_mode = true
+icon = SubResource("AtlasTexture_0jxvs")
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ToolFood" to="." method="_on_tool_food_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ToolWater" to="." method="_on_tool_water_pressed"]
