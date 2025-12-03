@@ -14,21 +14,35 @@ atlas = ExtResource("3_0jxvs")
 region = Rect2(0, 0, 16, 16)
 
 [node name="ToolsPanel" type="PanelContainer"]
-offset_right = 90.0
-offset_bottom = 60.0
-scale = Vector2(3.49, 3.49)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -648.0
+offset_right = -486.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 6
+size_flags_vertical = 10
 theme = ExtResource("1_2yiqu")
 theme_type_variation = &"DarkWoodPanel"
 script = ExtResource("2_0jxvs")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="ToolFood" type="Button" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme_type_variation = &"ToolButton"
 toggle_mode = true

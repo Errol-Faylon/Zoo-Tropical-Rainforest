@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw48jjsrqn2dy"]
+[gd_scene load_steps=12 format=3 uid="uid://cmx73hcmacypd"]
 
-[ext_resource type="Texture2D" uid="uid://2spoh6smwux8" path="res://assets/spr_tileset_sunnysideworld_16px.png" id="1_iurfs"]
-[ext_resource type="Texture2D" uid="uid://bx0wppy4v2sda" path="res://assets/Trees.png" id="2_jsssl"]
-[ext_resource type="Texture2D" uid="uid://dnvogha38ybcl" path="res://assets/Tileset Spring.png" id="3_5tr23"]
-[ext_resource type="PackedScene" uid="uid://bj6lfjfa77u62" path="res://scenes/player.tscn" id="4_geq7q"]
-[ext_resource type="PackedScene" uid="uid://bmcj4klabvutu" path="res://scenes/bunny.tscn" id="5_8w7nc"]
-[ext_resource type="PackedScene" uid="uid://disdf5f1ydwqm" path="res://scenes/ui/game_screen.tscn" id="6_jsssl"]
+[ext_resource type="PackedScene" uid="uid://8hdhvj7kobs2" path="res://scenes/components/day_night_cycle_component.tscn" id="1_ai2yl"]
+[ext_resource type="Texture2D" uid="uid://2spoh6smwux8" path="res://assets/spr_tileset_sunnysideworld_16px.png" id="1_h5irj"]
+[ext_resource type="Texture2D" uid="uid://bx0wppy4v2sda" path="res://assets/Trees.png" id="2_ai2yl"]
+[ext_resource type="Texture2D" uid="uid://dnvogha38ybcl" path="res://assets/Tileset Spring.png" id="3_y5b44"]
+[ext_resource type="PackedScene" uid="uid://bj6lfjfa77u62" path="res://scenes/player.tscn" id="4_eev12"]
+[ext_resource type="PackedScene" uid="uid://bmcj4klabvutu" path="res://scenes/bunny.tscn" id="5_k1q0q"]
+[ext_resource type="PackedScene" uid="uid://disdf5f1ydwqm" path="res://scenes/ui/game_screen.tscn" id="6_vy8pt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
-texture = ExtResource("1_iurfs")
+texture = ExtResource("1_h5irj")
 52:3/size_in_atlas = Vector2i(1, 3)
 52:3/0 = 0
 52:3/0/y_sort_origin = 15
@@ -131,14 +132,14 @@ texture = ExtResource("1_iurfs")
 46:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
-texture = ExtResource("2_jsssl")
+texture = ExtResource("2_ai2yl")
 5:3/size_in_atlas = Vector2i(2, 2)
 5:3/0 = 0
 5:3/0/y_sort_origin = 7
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.04484, 6.63941, 6.14393, 6.34212, 6.8376, 10.405, 4.5584, 11.5942, 0.198191, 15.1616, -4.16202, 11.8915, -7.13489, 10.2069)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
-texture = ExtResource("3_5tr23")
+texture = ExtResource("3_y5b44")
 8:8/0 = 0
 8:9/0 = 0
 8:11/0 = 0
@@ -158,7 +159,9 @@ sources/2 = SubResource("TileSetAtlasSource_iywne")
 sources/3 = SubResource("TileSetAtlasSource_p57ef")
 sources/4 = SubResource("TileSetAtlasSource_u5sy4")
 
-[node name="TestSceneGameScreenUI" type="Node2D"]
+[node name="TestSceneDayAndNightCycle" type="Node2D"]
+
+[node name="DayNightCycleComponent" parent="." instance=ExtResource("1_ai2yl")]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -187,7 +190,7 @@ layer_6/tile_data = PackedInt32Array(-458763, 851970, 19, -458764, 786434, 19, -
 layer_7/name = "Pond"
 layer_7/tile_data = PackedInt32Array(-393226, 1376258, 4, -393228, 1310722, 4, -393227, 1310722, 4, -393229, 1245186, 4, -458765, 1245186, 3, -458762, 1376258, 3, -524298, 1376258, 536870916, -524300, 1310722, 536870916, -524299, 1310722, 536870916, -524301, 1245186, 536870916, -524302, 131074, 1, -458766, 131074, 1, -393230, 131074, 1, -524297, 131074, 1, -458761, 131074, 1, -393225, 131074, 1, -327694, 131074, 1, -327693, 131074, 1, -327692, 131074, 1, -327691, 131074, 1, -327690, 131074, 1, -327689, 131074, 1, -589838, 131074, 1, -589837, 131074, 1, -589836, 131074, 1, -589835, 131074, 1, -589834, 131074, 1, -589833, 131074, 1, -458764, 1310722, 3, -458763, 1507330, 3)
 
-[node name="Player" parent="." instance=ExtResource("4_geq7q")]
+[node name="Player" parent="." instance=ExtResource("4_eev12")]
 position = Vector2(-89, 37)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -198,7 +201,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
-[node name="bunny" parent="." instance=ExtResource("5_8w7nc")]
+[node name="bunny" parent="." instance=ExtResource("5_k1q0q")]
 position = Vector2(-117, 33)
 
-[node name="GameScreen" parent="." instance=ExtResource("6_jsssl")]
+[node name="GameScreen" parent="." instance=ExtResource("6_vy8pt")]

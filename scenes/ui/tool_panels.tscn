@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck68c2eslljhj"]
+
+[ext_resource type="PackedScene" uid="uid://0gkxqbvtlh75" path="res://scenes/ui/tools_panel.tscn" id="1_qyeld"]
+
+[node name="ToolPanels" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ToolsPanel" parent="." instance=ExtResource("1_qyeld")]
+layout_mode = 1
+offset_left = -45.0
+offset_top = -120.0
+offset_right = 45.0
+offset_bottom = -60.0
