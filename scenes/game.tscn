@@ -157,7 +157,7 @@ sources/2 = SubResource("TileSetAtlasSource_iywne")
 sources/3 = SubResource("TileSetAtlasSource_p57ef")
 sources/4 = SubResource("TileSetAtlasSource_u5sy4")
 
-[node name="game" type="Node2D"]
+[node name="MainGame" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
