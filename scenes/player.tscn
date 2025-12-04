@@ -572,14 +572,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 5.0
-height = 12.0
+radius = 3.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 12.0
+radius = 11.0454
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_layer = 2
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -590,7 +591,7 @@ frame_progress = 0.438198
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -7)
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="player_hitbox" type="Area2D" parent="."]

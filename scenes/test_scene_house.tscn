@@ -1,17 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://20vwsqwq0ato"]
+[gd_scene load_steps=11 format=3 uid="uid://bjhaxlv0fbmkx"]
 
-[ext_resource type="PackedScene" uid="uid://8hdhvj7kobs2" path="res://scenes/components/day_night_cycle_component.tscn" id="1_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://bj6lfjfa77u62" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://2spoh6smwux8" path="res://assets/spr_tileset_sunnysideworld_16px.png" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://bx0wppy4v2sda" path="res://assets/Trees.png" id="3_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://dnvogha38ybcl" path="res://assets/Tileset Spring.png" id="4_iywne"]
-[ext_resource type="PackedScene" uid="uid://bmcj4klabvutu" path="res://scenes/bunny.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://dwjb2uj7ye4hw" path="res://scenes/houses/fence_door.tscn" id="6_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://disdf5f1ydwqm" path="res://scenes/ui/game_screen.tscn" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://c0566shsplpf1" path="res://scenes/houses/large_house.tscn" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://2spoh6smwux8" path="res://assets/spr_tileset_sunnysideworld_16px.png" id="1_vjwen"]
+[ext_resource type="Texture2D" uid="uid://bx0wppy4v2sda" path="res://assets/Trees.png" id="2_q6d6l"]
+[ext_resource type="Texture2D" uid="uid://dnvogha38ybcl" path="res://assets/Tileset Spring.png" id="3_w2hg3"]
+[ext_resource type="PackedScene" uid="uid://bj6lfjfa77u62" path="res://scenes/player.tscn" id="4_3w7mp"]
+[ext_resource type="TileSet" uid="uid://vfghabjor0x0" path="res://tilesets/game_tile_set.tres" id="4_q6d6l"]
+[ext_resource type="PackedScene" uid="uid://bmcj4klabvutu" path="res://scenes/bunny.tscn" id="5_vcdm2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
-texture = ExtResource("2_yqjtg")
+texture = ExtResource("1_vjwen")
 52:3/size_in_atlas = Vector2i(1, 3)
 52:3/0 = 0
 52:3/0/y_sort_origin = 15
@@ -134,14 +131,14 @@ texture = ExtResource("2_yqjtg")
 46:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
-texture = ExtResource("3_lbhrr")
+texture = ExtResource("2_q6d6l")
 5:3/size_in_atlas = Vector2i(2, 2)
 5:3/0 = 0
 5:3/0/y_sort_origin = 7
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.04484, 6.63941, 6.14393, 6.34212, 6.8376, 10.405, 4.5584, 11.5942, 0.198191, 15.1616, -4.16202, 11.8915, -7.13489, 10.2069)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
-texture = ExtResource("4_iywne")
+texture = ExtResource("3_w2hg3")
 8:8/0 = 0
 8:9/0 = 0
 8:11/0 = 0
@@ -161,9 +158,7 @@ sources/2 = SubResource("TileSetAtlasSource_iywne")
 sources/3 = SubResource("TileSetAtlasSource_p57ef")
 sources/4 = SubResource("TileSetAtlasSource_u5sy4")
 
-[node name="MainGame" type="Node2D"]
-
-[node name="DayNightCycleComponent" parent="." instance=ExtResource("1_u5sy4")]
+[node name="TestSceneHouseTilemap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -192,37 +187,20 @@ layer_6/tile_data = PackedInt32Array(-458763, 851970, 19, -458764, 786434, 19, -
 layer_7/name = "Pond"
 layer_7/tile_data = PackedInt32Array(-393226, 1376258, 4, -393228, 1310722, 4, -393227, 1310722, 4, -393229, 1245186, 4, -458765, 1245186, 3, -458762, 1376258, 3, -524298, 1376258, 536870916, -524300, 1310722, 536870916, -524299, 1310722, 536870916, -524301, 1245186, 536870916, -524302, 131074, 1, -458766, 131074, 1, -393230, 131074, 1, -524297, 131074, 1, -458761, 131074, 1, -393225, 131074, 1, -327694, 131074, 1, -327693, 131074, 1, -327692, 131074, 1, -327691, 131074, 1, -327690, 131074, 1, -327689, 131074, 1, -589838, 131074, 1, -589837, 131074, 1, -589836, 131074, 1, -589835, 131074, 1, -589834, 131074, 1, -589833, 131074, 1, -458764, 1310722, 3, -458763, 1507330, 3)
 
-[node name="LargeHouse" parent="TileMap" instance=ExtResource("8_gee14")]
-position = Vector2(-87, -16)
-scale = Vector2(1, 0.866)
+[node name="Houses" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray(0, 0, 250, 255, 255, 255, 2, 0, 0, 0, 0, 0, 1, 0)
+tile_set = ExtResource("4_q6d6l")
 
-[node name="FenceDoor" parent="TileMap" instance=ExtResource("6_0tnpc")]
-position = Vector2(-104.224, 151.001)
-
-[node name="FenceDoor2" parent="TileMap" instance=ExtResource("6_0tnpc")]
-position = Vector2(-471.75, 167.146)
-
-[node name="FenceDoor3" parent="TileMap" instance=ExtResource("6_0tnpc")]
-position = Vector2(-24.1361, -201.335)
-
-[node name="FenceDoor4" parent="TileMap" instance=ExtResource("6_0tnpc")]
-position = Vector2(-471.75, 38.9375)
-
-[node name="FenceDoor5" parent="TileMap" instance=ExtResource("6_0tnpc")]
-position = Vector2(264, -105)
-
-[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(0, -1)
+[node name="Player" parent="." instance=ExtResource("4_3w7mp")]
+position = Vector2(0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
-[node name="bunny" parent="." instance=ExtResource("5_iywne")]
-position = Vector2(-98, 211)
-
-[node name="GameScreen" parent="." instance=ExtResource("6_p57ef")]
+[node name="bunny" parent="." instance=ExtResource("5_vcdm2")]
+position = Vector2(-117, 33)

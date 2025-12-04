@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwjb2uj7ye4hw"]
+
+[ext_resource type="Script" uid="uid://b7a5i4g5jqp08" path="res://scenes/houses/fence_door.gd" id="1_kgs3q"]
+[ext_resource type="Texture2D" uid="uid://2spoh6smwux8" path="res://assets/spr_tileset_sunnysideworld_16px.png" id="2_s1c17"]
+[ext_resource type="PackedScene" uid="uid://c3oglntovyii5" path="res://scenes/components/interactable_component.tscn" id="3_7esvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hya00"]
+atlas = ExtResource("2_s1c17")
+region = Rect2(736, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x268j"]
+atlas = ExtResource("2_s1c17")
+region = Rect2(736, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu2vu"]
+atlas = ExtResource("2_s1c17")
+region = Rect2(736, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmok1"]
+atlas = ExtResource("2_s1c17")
+region = Rect2(736, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ua5y"]
+atlas = ExtResource("2_s1c17")
+region = Rect2(736, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb53x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hya00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x268j")
+}],
+"loop": false,
+"name": &"close_fence",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu2vu")
+}],
+"loop": false,
+"name": &"default_door",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmok1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ua5y")
+}],
+"loop": false,
+"name": &"open_fence",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxi54"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nno8d"]
+size = Vector2(12, 32)
+
+[node name="FenceDoor" type="StaticBody2D"]
+script = ExtResource("1_kgs3q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nb53x")
+animation = &"open_fence"
+autoplay = "default_door"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bxi54")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("3_7esvc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+shape = SubResource("RectangleShape2D_nno8d")
+debug_color = Color(0.960129, 0.134611, 0.38017, 0.42)
