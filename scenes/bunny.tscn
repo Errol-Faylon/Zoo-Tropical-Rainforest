@@ -123,7 +123,7 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_84m58")
 
 [node name="heal_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 autostart = true
 
 [node name="healthbar" type="ProgressBar" parent="."]
@@ -136,7 +136,7 @@ scale = Vector2(0.1, 0.1)
 show_percentage = false
 
 [node name="health_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [node name="hungerbar" type="ProgressBar" parent="."]
@@ -149,7 +149,7 @@ scale = Vector2(0.1, 0.1)
 show_percentage = false
 
 [node name="hunger_time" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 autostart = true
 
 [node name="thirstbar" type="ProgressBar" parent="."]
@@ -162,7 +162,7 @@ scale = Vector2(0.1, 0.1)
 show_percentage = false
 
 [node name="thirst_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 autostart = true
 
 [node name="bunny_hitbox" type="Area2D" parent="."]

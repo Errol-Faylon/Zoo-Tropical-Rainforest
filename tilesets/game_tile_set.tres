@@ -1,8 +1,10 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://vfghabjor0x0"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://vfghabjor0x0"]
 
 [ext_resource type="Texture2D" uid="uid://bwcq8u4tnxm8w" path="res://assets/tilesets/Wooden_House_Walls_Tilset.png" id="1_tkbyn"]
 [ext_resource type="Texture2D" uid="uid://b07b0csoperhf" path="res://assets/tilesets/Basic_Furniture.png" id="2_v1amf"]
 [ext_resource type="PackedScene" uid="uid://c0566shsplpf1" path="res://scenes/houses/large_house.tscn" id="3_v1amf"]
+[ext_resource type="PackedScene" uid="uid://dehmcy5oduoij" path="res://scenes/houses/medium_house.tscn" id="4_7cqdy"]
+[ext_resource type="PackedScene" uid="uid://mvbujn1ada0w" path="res://scenes/houses/small_house.tscn" id="5_pudl8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yxgbh"]
 texture = ExtResource("1_tkbyn")
@@ -111,6 +113,8 @@ texture = ExtResource("2_v1amf")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7cqdy"]
 scenes/1/scene = ExtResource("3_v1amf")
+scenes/2/scene = ExtResource("4_7cqdy")
+scenes/3/scene = ExtResource("5_pudl8")
 
 [resource]
 physics_layer_0/collision_layer = 1
